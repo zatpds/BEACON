@@ -1,0 +1,74 @@
+# Datasets and training outputs (kept out of version control)
+/data/
+/runs/
+/sample_videos/
+eval_results/
+/scripts/rs_collect/core_datasets/
+/scripts/rs_collect/luggage_env/demos/
+/scripts/feature_align/figures/
+/utils/dhat_results/
+
+# Large binaries (datasets, checkpoints, arrays, videos, archives).
+# Scoped to types that never appear under packages/ so vendored simulator
+# assets (.png/.stl/.obj/.dae/.mtl/...) are preserved.
+*.hdf5
+*.h5
+*.zarr
+*.pth
+*.pt
+*.ckpt
+*.safetensors
+*.npy
+*.npz
+*.mp4
+*.avi
+*.mov
+*.mkv
+*.tar
+*.tar.gz
+*.tgz
+*.zip
+*.gz
+*.7z
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+*.egg
+.eggs/
+build/
+dist/
+
+# Environments
+.venv/
+venv/
+env/
+.conda/
+
+# Experiment trackers / logs
+wandb/
+mlruns/
+lightning_logs/
+tensorboard_logs/
+*.log
+
+# Secrets
+.env
+.env.*
+*.pem
+*.key
+
+# Editor / OS
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+.ipynb_checkpoints/
+
+# MuJoCo runtime log
+MUJOCO_LOG.TXT

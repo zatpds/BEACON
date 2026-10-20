@@ -1,0 +1,12 @@
+{
+    "source_data": "data/stack/rs_stack_500.hdf5",
+    "target_data": "data/stack/rsw_stack_20.hdf5",
+    "source_only_ckpt": "runs/source_only_stack_sim/<run>/models/model_epoch_600.pth",
+    "target_only_ckpt": "runs/target_only_stack_sim/<run>/models/model_epoch_300.pth",
+    "methods": {
+        "Co-Training": "runs/cotrain_stack_sim/<run>/models/model_epoch_600.pth",
+        "MMD": "runs/mmd_stack_sim/<run>/models/model_epoch_600.pth",
+        "UOT": "runs/uot_stack_sim/<run>/models/model_epoch_600.pth",
+        "BEACON": "runs/beacon_stack_sim/<run>/models/model_epoch_600.pth"
+    }
+}

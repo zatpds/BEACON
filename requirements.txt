@@ -1,0 +1,56 @@
+# Python dependencies for BEACON.
+#
+# PyTorch (torch / torchvision) is installed separately by setup.sh so that the
+# correct CUDA build is selected for your machine; it is intentionally omitted
+# here. The three simulator packages (robomimic, robosuite, mimicgen) are
+# installed in editable mode from packages/ by setup.sh.
+#
+# Pinned versions mirror the environment the reported experiments were run with
+# (Python 3.9, torch 2.8.0+cu128).
+
+# Simulation / rendering
+mujoco==3.3.7
+egl_probe>=1.0.1
+PyOpenGL
+
+# Diffusion policy (robomimic targets this exact diffusers API)
+diffusers==0.11.1
+huggingface_hub==0.23.4
+transformers==4.41.2
+
+# Distribution alignment for co-training (OT / UOT / MMD)
+pot==0.9.6.post1
+geomloss==0.2.6
+
+# Scientific stack
+numpy==1.26.4
+scipy==1.13.1
+numba==0.60.0
+h5py>=3.10
+scikit-learn>=1.3
+
+# Data IO / visualization
+matplotlib
+imageio
+imageio-ffmpeg
+opencv-python
+Pillow
+PyYAML
+transforms3d
+gdown
+
+# Dataset conversion and analysis utilities (scripts/, utils/)
+zarr==2.18.2       # utils/zarr_to_hdf5.py: real-robot replay buffers
+dtw-python==1.7.4  # utils/gen_dtw.py: DTW pair info for OT / MMD co-training
+umap-learn         # scripts/feature_align/plot_feature_align.py
+
+# Training utilities
+tqdm
+psutil
+termcolor
+tensorboard
+tensorboardX
+gymnasium==0.29.1
+
+# Optional: only needed if you set experiment.logging.log_wandb = true
+# wandb

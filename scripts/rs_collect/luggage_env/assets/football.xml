@@ -1,0 +1,37 @@
+<mujoco model="football">
+  <!--
+    Mini (American/rugby style) football.
+      * Prolate ellipsoid, semi-axes (0.081, 0.047, 0.047) m  (~16 cm long,
+        ~9.5 cm diameter) - a little smaller than before, kept in proportion
+        with the (also smaller) luggage.
+      * A single ellipsoid COLLISION geom (group 0) carries the physics so
+        MuJoCo computes the correct ellipsoidal inertia / rolling contact,
+        ~0.08 kg foam ball.
+      * Four colored VISUAL panels (group 1) tile the surface around the long
+        (x) axis to give the purple / red / orange / green look.
+  -->
+  <worldbody>
+    <body>
+      <body name="object">
+        <!-- physics body -->
+        <geom name="ball" type="ellipsoid" size="0.081 0.047 0.047" pos="0 0 0"
+              group="0" condim="6" friction="0.7 0.02 0.001"
+              solref="0.015 1" solimp="0.9 0.95 0.001"
+              mass="0.08" rgba="0.08 0.08 0.08 1"/>
+
+        <!-- four colored visual panels around the long axis -->
+        <geom name="panel_purple" type="ellipsoid" size="0.084 0.043 0.043" pos="0  0.010  0"
+              group="1" contype="0" conaffinity="0" mass="1e-8" rgba="0.58 0.16 0.78 1"/>
+        <geom name="panel_red"    type="ellipsoid" size="0.084 0.043 0.043" pos="0 -0.010  0"
+              group="1" contype="0" conaffinity="0" mass="1e-8" rgba="0.85 0.12 0.12 1"/>
+        <geom name="panel_orange" type="ellipsoid" size="0.084 0.043 0.043" pos="0  0  0.010"
+              group="1" contype="0" conaffinity="0" mass="1e-8" rgba="0.95 0.50 0.06 1"/>
+        <geom name="panel_green"  type="ellipsoid" size="0.084 0.043 0.043" pos="0  0 -0.010"
+              group="1" contype="0" conaffinity="0" mass="1e-8" rgba="0.12 0.62 0.22 1"/>
+      </body>
+      <site rgba="0 0 0 0" size="0.005" pos="0 0 -0.047" name="bottom_site"/>
+      <site rgba="0 0 0 0" size="0.005" pos="0 0 0.047" name="top_site"/>
+      <site rgba="0 0 0 0" size="0.005" pos="0.081 0 0" name="horizontal_radius_site"/>
+    </body>
+  </worldbody>
+</mujoco>

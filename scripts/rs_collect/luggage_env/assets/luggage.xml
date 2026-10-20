@@ -1,0 +1,59 @@
+<mujoco model="luggage">
+  <!--
+    Open hard-shell luggage lying flat on the table (a stationary fixture),
+    opened LEFT to RIGHT like a book.  Sized a little smaller than real.
+      * Two equal trays joined at a central hinge / ridge that runs front-to-back
+        (along x at y = 0).  Full opened footprint ~40 cm (x) x 58 cm (y).
+      * The ridge (~8 cm tall, thin, rounded crest like a real spine) splits the
+        interior into a LEFT half (y < 0) and a RIGHT half (y > 0).
+      * The LEFT half has the small black bumps left by the RETRACTED pull
+        handle: two low rounded humps on the inner floor.  They make the left
+        side slightly uneven (the ball can rest on the two), and the ball is
+        pushed sideways (+y) over the ridge into the right half.
+      * A raised perimeter rim (dark shell) surrounds the trays.
+      * Local frame: origin at the center of the floor, z = 0 at the bottom face
+        (placed flush on the table top).  Inner surfaces are black.
+      Loaded with joints=None so it is welded to the world and stays stationary.
+  -->
+  <worldbody>
+    <body>
+      <body name="object">
+        <!-- ===== black inner floor ===== -->
+        <geom name="floor" type="box" size="0.20 0.29 0.01" pos="0 0 0.01"
+              rgba="0.03 0.03 0.03 1" friction="0.9 0.02 0.001" group="0"/>
+
+        <!-- ===== raised perimeter rim (dark shell, clearly visible) ===== -->
+        <geom name="wall_xn" type="box" size="0.008 0.29 0.022" pos="-0.192 0 0.042"
+              rgba="0.17 0.17 0.19 1" group="0"/>
+        <geom name="wall_xp" type="box" size="0.008 0.29 0.022" pos="0.192 0 0.042"
+              rgba="0.17 0.17 0.19 1" group="0"/>
+        <geom name="wall_yn" type="box" size="0.20 0.008 0.022" pos="0 -0.282 0.042"
+              rgba="0.17 0.17 0.19 1" group="0"/>
+        <geom name="wall_yp" type="box" size="0.20 0.008 0.022" pos="0 0.282 0.042"
+              rgba="0.17 0.17 0.19 1" group="0"/>
+
+        <!-- ===== central ridge / spine (thin, rounded crest) =====
+             Crest ~8.5 cm above the floor: a little shorter than the ball's
+             diameter (~9.4 cm laid flat), matching the real luggage.  The robot
+             clears it with a combined push + lift (rolling the ball over). -->
+        <geom name="ridge" type="box" size="0.20 0.005 0.033" pos="0 0 0.053"
+              rgba="0.08 0.08 0.09 1" friction="0.7 0.02 0.001" group="0"/>
+        <geom name="ridge_crest" type="cylinder" fromto="-0.20 0 0.086 0.20 0 0.086"
+              size="0.018" rgba="0.09 0.09 0.10 1" friction="0.6 0.02 0.001" group="0"/>
+
+        <!-- ===== retracted pull-handle bumps (left half, black, low) =====
+             Two small rounded humps on the inner floor (the housing of the
+             retracted telescoping handle); the ball rests in the saddle between
+             them.  Shifted a little to the left so there is room between the
+             right bump and the ridge for the intermediate (two-step) roll. -->
+        <geom name="handle_bump_a" type="cylinder" fromto="-0.15 -0.11 0.018 0.15 -0.11 0.018"
+              size="0.016" rgba="0.04 0.04 0.04 1" friction="0.8 0.02 0.001" group="0"/>
+        <geom name="handle_bump_b" type="cylinder" fromto="-0.15 -0.19 0.018 0.15 -0.19 0.018"
+              size="0.016" rgba="0.04 0.04 0.04 1" friction="0.8 0.02 0.001" group="0"/>
+      </body>
+      <site rgba="0 0 0 0" size="0.005" pos="0 0 0" name="bottom_site"/>
+      <site rgba="0 0 0 0" size="0.005" pos="0 0 0.10" name="top_site"/>
+      <site rgba="0 0 0 0" size="0.005" pos="0.29 0 0" name="horizontal_radius_site"/>
+    </body>
+  </worldbody>
+</mujoco>

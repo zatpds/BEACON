@@ -1,0 +1,84 @@
+{
+    "name": "threading",
+    "type": "robosuite",
+    "experiment": {
+        "name": "threading",
+        "source": {
+            "dataset_path": "data/thread/threading.hdf5",
+            "filter_key": null,
+            "n": 10,
+            "start": null
+        },
+        "generation": {
+            "path": "scripts/rs_collect/core_datasets/threading",
+            "guarantee": true,
+            "keep_failed": true,
+            "num_trials": 500,
+            "select_src_per_subtask": false,
+            "transform_first_robot_pose": false,
+            "interpolate_from_last_target_pose": true
+        },
+        "task": {
+            "name": "Threading",
+            "robot": null,
+            "gripper": null,
+            "env_meta_update_kwargs": {},
+            "interface": null,
+            "interface_type": null
+        },
+        "max_num_failures": 25,
+        "render_video": true,
+        "num_demo_to_render": 10,
+        "num_fail_demo_to_render": 25,
+        "log_every_n_attempts": 50,
+        "seed": 1
+    },
+    "obs": {
+        "collect_obs": true,
+        "camera_names": [
+            "agentview"
+        ],
+        "camera_height": 96,
+        "camera_width": 96
+    },
+    "task": {
+        "task_spec": {
+            "subtask_1": {
+                "object_ref": "needle",
+                "subtask_term_signal": "grasp",
+                "subtask_term_offset_range": [
+                    5,
+                    10
+                ],
+                "selection_strategy": "random",
+                "selection_strategy_kwargs": null,
+                "action_noise": 0.05,
+                "num_interpolation_steps": 5,
+                "num_fixed_steps": 0,
+                "apply_noise_during_interpolation": false
+            },
+            "subtask_2": {
+                "object_ref": "tripod",
+                "subtask_term_signal": null,
+                "subtask_term_offset_range": null,
+                "selection_strategy": "random",
+                "selection_strategy_kwargs": null,
+                "action_noise": 0.03,
+                "num_interpolation_steps": 5,
+                "num_fixed_steps": 0,
+                "apply_noise_during_interpolation": false
+            }
+        }
+    },
+    "meta": {
+        "hp_base_config_file": "scripts/rs_collect/core_configs/threading.json",
+        "hp_keys": [
+            "src",
+            "task"
+        ],
+        "hp_values": [
+            "threading",
+            "D0"
+        ]
+    }
+}
